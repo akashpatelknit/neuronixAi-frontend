@@ -1,0 +1,48 @@
+/* NeuronixAI design tokens. Tailwind v4 turns every --color-* into utilities (bg-violet, text-ink-soft, ...). */
+@theme {
+  /* Brand */
+  --color-violet: #7047eb;
+  --color-indigo: #5145cd;
+  --color-blue: #3685f5;
+  --color-cyan: #20c9d7;
+  --color-coral: #ff7867;
+  --color-amber: #ffbe55;
+  --color-mint: #40d9a0;
+
+  /* Neutrals */
+  --color-canvas: #f7f8ff;
+  --color-surface: #ffffff;
+  --color-ink: #20213a;
+  --color-ink-soft: #6b7088;
+  --color-line: #e8eaf5;
+
+  /* Soft tinted surfaces + AA-safe text colors per accent */
+  --color-violet-soft: #f0ebfe;
+  --color-violet-ink: #5a34c9;
+  --color-blue-soft: #e8f1fe;
+  --color-blue-ink: #1f5fc4;
+  --color-cyan-soft: #e1f8fa;
+  --color-cyan-ink: #0b7a85;
+  --color-coral-soft: #ffeeeb;
+  --color-coral-ink: #c23f2e;
+  --color-amber-soft: #fff4de;
+  --color-amber-ink: #8a5a00;
+  --color-mint-soft: #e2faf1;
+  --color-mint-ink: #0f7a55;
+  --color-neutral-soft: #eef0f7;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius-card: 1rem;
+  --shadow-card: 0 1px 2px rgb(32 33 58 / 0.04), 0 4px 16px rgb(112 71 235 / 0.06);
+  --shadow-lift: 0 2px 4px rgb(32 33 58 / 0.04), 0 12px 32px rgb(112 71 235 / 0.14);
+}
+
+:root {
+  --gradient-brand: linear-gradient(135deg, #7047eb 0%, #5145cd 45%, #3685f5 100%);
+  --gradient-hero: radial-gradient(60% 60% at 15% 0%, #e9e2ff 0%, transparent 70%),
+    radial-gradient(50% 50% at 90% 10%, #dcecff 0%, transparent 70%), #f7f8ff;
+  --duration-fast: 150ms;
+  --duration-base: 220ms;
+}
