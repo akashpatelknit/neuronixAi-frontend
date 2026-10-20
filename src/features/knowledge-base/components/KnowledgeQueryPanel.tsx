@@ -1,7 +1,9 @@
 import { useState, type FormEvent } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { Button } from '@/components/ui/Button'
-import { Card, CardHeader } from '@/components/ui/Card'
+import { Loader2 } from 'lucide-react'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { Card, CardHeader, CardDescription, CardTitle } from '@/components/ui/card'
 import { SimulatedNotice } from '@/components/feedback/SimulatedNotice'
 import { getErrorMessage } from '@/utils/errorUtils'
 import { knowledgeBaseApi } from '../services/knowledgeBaseApi'
@@ -15,11 +17,11 @@ export function KnowledgeQueryPanel() {
   }
   return (
     <Card>
-      <CardHeader title="Ask your documents" subtitle="Answers are grounded in documents you uploaded." />
+      <CardHeader><CardTitle>Ask your documents</CardTitle><CardDescription>Answers are grounded in documents you uploaded.</CardDescription></CardHeader>
       <form onSubmit={submit} className="space-y-3 p-5">
         <label htmlFor="kb-question" className="sr-only">Question about your documents</label>
-        <input id="kb-question" value={question} onChange={(e) => setQuestion(e.target.value)} placeholder="e.g. How does authentication work in our architecture?" className="min-h-11 w-full rounded-xl border border-line px-3.5 text-sm focus:border-violet focus:outline-none focus:ring-2 focus:ring-violet/20" />
-        <Button type="submit" loading={ask.isPending} disabled={!question.trim()}>Ask</Button>
+        <Input id="kb-question" value={question} onChange={(e) => setQuestion(e.target.value)} placeholder="e.g. How does authentication work in our architecture?" className="h-11" />
+        <Button type="submit" disabled={ask.isPending || !question.trim()}>{ask.isPending && <Loader2 className="animate-spin" />}Ask</Button>
       </form>
       <div className="px-5 pb-5" aria-live="polite">
         {ask.error && <p role="alert" className="text-sm text-coral-ink">{getErrorMessage(ask.error)}</p>}

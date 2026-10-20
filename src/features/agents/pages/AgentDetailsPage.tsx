@@ -1,10 +1,10 @@
+import { Button } from '@/components/ui/button'
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
-import { Card, CardHeader } from '@/components/ui/Card'
+import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 import { ErrorState } from '@/components/feedback/ErrorState'
 import { EmptyState } from '@/components/feedback/EmptyState'
-import { Skeleton } from '@/components/ui/Skeleton'
-import { buttonClasses } from '@/components/ui/Button'
+import { Skeleton } from '@/components/ui/skeleton'
 import { Bot } from 'lucide-react'
 import { formatRelative } from '@/utils/dateUtils'
 import { AgentIcon } from '../components/AgentIcon'
@@ -36,20 +36,20 @@ export default function AgentDetailsPage() {
               <AgentStatus availability={agent.availability} />
             </div>
             {agent.availability === 'available' && (
-              <Link to="/app/workspace" className={buttonClasses('primary', 'md', 'mt-5')}>
+              <Button asChild className="mt-5 bg-brand-gradient"><Link to="/app/workspace">
                 Describe a task in the Workspace
-              </Link>
+              </Link></Button>
             )}
           </Card>
           <div className="grid gap-4 md:grid-cols-2">
             <Card>
-              <CardHeader title="Responsibilities" />
+              <CardHeader><CardTitle>Responsibilities</CardTitle></CardHeader>
               <ul className="list-disc space-y-1 px-9 py-4 text-sm text-ink-soft">
                 {agent.responsibilities.length ? agent.responsibilities.map((r) => <li key={r}>{r}</li>) : <li>Not described yet.</li>}
               </ul>
             </Card>
             <Card>
-              <CardHeader title="Recent activity" />
+              <CardHeader><CardTitle>Recent activity</CardTitle></CardHeader>
               <div className="p-5 text-sm">
                 {agent.recentActivity.length ? (
                   <ul className="space-y-2">

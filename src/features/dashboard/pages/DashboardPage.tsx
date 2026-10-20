@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { ErrorState } from '@/components/feedback/ErrorState'
 import { SimulatedNotice } from '@/components/feedback/SimulatedNotice'
-import { Skeleton } from '@/components/ui/Skeleton'
+import { Skeleton } from '@/components/ui/skeleton'
 import { DashboardMetrics } from '../components/DashboardMetrics'
 import { DashboardWelcome } from '../components/DashboardWelcome'
 import { QuickTaskComposer } from '../components/QuickTaskComposer'

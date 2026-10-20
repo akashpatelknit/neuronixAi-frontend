@@ -1,8 +1,8 @@
+import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { Logo } from '@/components/layout/Logo'
-import { buttonClasses } from '@/components/ui/Button'
 import { navLinks } from '../data/landingContent'
 
 export function LandingNavbar() {
@@ -17,8 +17,8 @@ export function LandingNavbar() {
           ))}
         </nav>
         <div className="hidden items-center gap-2 md:flex">
-          <Link to="/login" className={buttonClasses('ghost', 'md')}>Login</Link>
-          <Link to="/register" className={buttonClasses('primary', 'md')}>Get Started</Link>
+          <Button asChild variant="ghost"><Link to="/login">Login</Link></Button>
+          <Button asChild className="bg-brand-gradient"><Link to="/register">Get Started</Link></Button>
         </div>
         <button type="button" className="rounded-lg p-2 md:hidden" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="landing-menu" onClick={() => setOpen((o) => !o)}>
           {open ? <X size={22} /> : <Menu size={22} />}
@@ -30,8 +30,8 @@ export function LandingNavbar() {
             <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-3 text-sm font-medium hover:bg-violet-soft">{l.label}</a>
           ))}
           <div className="mt-2 grid grid-cols-2 gap-2">
-            <Link to="/login" className={buttonClasses('secondary')}>Login</Link>
-            <Link to="/register" className={buttonClasses('primary')}>Get Started</Link>
+            <Button asChild variant="outline"><Link to="/login">Login</Link></Button>
+            <Button asChild className="bg-brand-gradient"><Link to="/register">Get Started</Link></Button>
           </div>
         </div>
       )}

@@ -1,3 +1,4 @@
+import { Card } from '@/components/ui/card'
 import { ArrowDown, FileCheck2, MessageSquareText, Workflow } from 'lucide-react'
 import { agentCatalog } from '@/features/agents/data/agentCatalog'
 import { AgentIcon } from '@/features/agents/components/AgentIcon'
@@ -18,7 +19,7 @@ export function AgentOrchestrationVisual() {
   return (
     <figure className="relative mx-auto w-full max-w-md" aria-label="Illustration: a task is orchestrated across specialized agents into a result">
       <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-brand-gradient opacity-10 blur-2xl" aria-hidden="true" />
-      <div className="rounded-3xl border border-line bg-surface/90 p-5 shadow-lift">
+      <Card className="rounded-3xl bg-card/90 p-5 shadow-lift">
         <div className="flex items-start gap-3 rounded-2xl bg-canvas p-3.5">
           <MessageSquareText size={18} className="mt-0.5 shrink-0 text-violet" aria-hidden="true" />
           <p className="text-sm">“Research our competitors, compare them, and draft a summary for the team.”</p>
@@ -41,7 +42,7 @@ export function AgentOrchestrationVisual() {
           <FileCheck2 size={20} className="shrink-0 text-mint-ink" aria-hidden="true" />
           <p className="text-sm font-medium text-mint-ink">Delivered: a clear, reviewable result</p>
         </div>
-      </div>
+      </Card>
       <figcaption className="mt-3 text-center text-xs text-ink-soft">Conceptual illustration, not a live execution.</figcaption>
     </figure>
   )

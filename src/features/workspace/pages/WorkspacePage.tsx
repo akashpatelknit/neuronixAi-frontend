@@ -1,6 +1,7 @@
+import { Card } from '@/components/ui/card'
 import { useEffect, useRef } from 'react'
 import { Plus, Sparkles } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import { SimulatedNotice } from '@/components/feedback/SimulatedNotice'
 import { appConfig } from '@/config/appConfig'
 import { useSearchParams } from 'react-router-dom'
@@ -37,7 +38,7 @@ export default function WorkspacePage() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-ink-soft">Describe the outcome. NeuronixAI coordinates the work.</p>
         {turns.length > 0 && (
-          <Button variant="secondary" size="sm" onClick={reset}>
+          <Button variant="outline" size="sm" onClick={reset}>
             <Plus size={14} aria-hidden="true" /> New conversation
           </Button>
         )}
@@ -45,7 +46,7 @@ export default function WorkspacePage() {
       {appConfig.useMockData && <SimulatedNotice>Demo mode: workflows below are simulated and do not run on the backend.</SimulatedNotice>}
 
       {turns.length === 0 ? (
-        <div className="rounded-2xl border border-line bg-surface p-6 text-center shadow-card">
+        <Card className="p-6 text-center">
           <span className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-brand-gradient text-white">
             <Sparkles size={22} aria-hidden="true" />
           </span>
@@ -58,7 +59,7 @@ export default function WorkspacePage() {
               </button>
             ))}
           </div>
-        </div>
+        </Card>
       ) : (
         <ConversationPanel turns={turns} onRetry={(id) => retry(id)} />
       )}

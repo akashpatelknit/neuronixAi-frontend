@@ -1,24 +1,19 @@
-import { useEffect, useRef } from 'react'
-import { X } from 'lucide-react'
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { Logo } from './Logo'
 import { SidebarNav } from './SidebarNav'
 
-/** Slide-in drawer for small screens, built on <dialog> for focus handling and Escape. */
+/** Slide-in drawer for small screens. */
 export function MobileNavigation({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const ref = useRef<HTMLDialogElement>(null)
-  useEffect(() => {
-    const d = ref.current
-    if (!d) return
-    if (open && !d.open) d.showModal()
-    if (!open && d.open) d.close()
-  }, [open])
   return (
-    <dialog ref={ref} onClose={onClose} onClick={(e) => e.target === ref.current && onClose()} aria-label="Navigation" className="m-0 h-full max-h-none w-72 max-w-[85vw] bg-surface p-3 backdrop:bg-ink/40">
-      <div className="flex h-14 items-center justify-between px-2">
-        <Logo to="/app" />
-        <button type="button" onClick={onClose} aria-label="Close navigation" className="rounded-lg p-2 hover:bg-canvas"><X size={18} /></button>
-      </div>
-      <SidebarNav onNavigate={onClose} />
-    </dialog>
+    <Sheet open={open} onOpenChange={(next) => !next && onClose()}>
+      <SheetContent side="left" className="w-72 p-3">
+        <SheetHeader className="p-2">
+          <SheetTitle className="sr-only">Navigation</SheetTitle>
+          <SheetDescription className="sr-only">Main navigation</SheetDescription>
+          <Logo to="/app" />
+        </SheetHeader>
+        <SidebarNav onNavigate={onClose} />
+      </SheetContent>
+    </Sheet>
   )
 }

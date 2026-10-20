@@ -1,13 +1,14 @@
+import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { ArrowLeft, MessagesSquare, Search } from 'lucide-react'
+import { Input } from '@/components/ui/input'
 import { EmptyState } from '@/components/feedback/EmptyState'
 import { ErrorState } from '@/components/feedback/ErrorState'
 import { SimulatedNotice } from '@/components/feedback/SimulatedNotice'
-import { SkeletonList } from '@/components/ui/Skeleton'
-import { buttonClasses } from '@/components/ui/Button'
-import { Card } from '@/components/ui/Card'
+import { ListSkeleton } from '@/components/feedback/ListSkeleton'
+import { Card } from '@/components/ui/card'
 import { formatDateTime } from '@/utils/dateUtils'
 import { ConversationList } from '../components/ConversationList'
 import { conversationApi } from '../services/conversationApi'
@@ -20,7 +21,7 @@ function ConversationView({ id }: { id: string }) {
       <Link to="/app/conversations" className="inline-flex items-center gap-1.5 text-sm font-medium text-violet-ink hover:underline">
         <ArrowLeft size={16} aria-hidden="true" /> All conversations
       </Link>
-      {isLoading && <SkeletonList rows={3} />}
+      {isLoading && <ListSkeleton rows={3} />}
       {error && <ErrorState error={error} onRetry={refetch} title="Could not load this conversation" />}
       {data && (
         <>
@@ -37,7 +38,7 @@ function ConversationView({ id }: { id: string }) {
             ))}
             {data.messages.length === 0 && <p className="text-sm text-ink-soft">This conversation has no messages.</p>}
           </Card>
-          <Link to="/app/workspace" className={buttonClasses('secondary')}>Start a new task in the Workspace</Link>
+          <Button asChild variant="outline"><Link to="/app/workspace">Start a new task in the Workspace</Link></Button>
           <p className="text-xs text-ink-soft">Continuing an existing conversation is not available until the backend confirms support.</p>
         </>
       )}
@@ -58,9 +59,9 @@ export default function ConversationsPage() {
       {data?.some((c) => c.simulated) && <SimulatedNotice />}
       <div className="relative">
         <Search size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-soft" aria-hidden="true" />
-        <input type="search" aria-label="Search conversations" placeholder="Search conversations" value={search} onChange={(e) => setSearch(e.target.value)} className="min-h-11 w-full rounded-xl border border-line bg-surface pl-9 pr-3 text-sm focus:border-violet focus:outline-none focus:ring-2 focus:ring-violet/20" />
+        <Input type="search" aria-label="Search conversations" placeholder="Search conversations" value={search} onChange={(e) => setSearch(e.target.value)} className="h-11 bg-card pl-9" />
       </div>
-      {isLoading && <SkeletonList />}
+      {isLoading && <ListSkeleton />}
       {error && <ErrorState error={error} onRetry={refetch} title="Could not load conversations" />}
       {data && items.length === 0 && (
         <EmptyState icon={MessagesSquare} title={search ? 'No conversations match' : 'No conversations yet'} description={search ? 'Try a different search.' : 'Start a task to create your first conversation.'} actionLabel={search ? undefined : 'Open AI Workspace'} actionTo="/app/workspace" />

@@ -1,7 +1,7 @@
-import { RotateCcw, User } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
-import { StatusBadge } from '@/components/ui/StatusBadge'
-import { LoadingSpinner } from '@/components/ui/LoadingSpinner'
+import { Card } from '@/components/ui/card'
+import { Loader2, RotateCcw, User } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { StatusBadge } from '@/components/feedback/StatusBadge'
 import { SimulatedNotice } from '@/components/feedback/SimulatedNotice'
 import type { TurnState } from '../hooks/useTaskExecution'
 import { AgentRoutingView } from './AgentRoutingView'
@@ -20,14 +20,14 @@ export function ConversationPanel({ turns, onRetry }: { turns: TurnState[]; onRe
             <p className="whitespace-pre-wrap rounded-2xl rounded-tl-sm bg-surface px-4 py-2.5 text-sm shadow-card">{turn.prompt}</p>
           </div>
 
-          <div className="ml-0 rounded-2xl border border-line bg-surface p-4 shadow-card sm:ml-11">
-            {turn.submitting && <LoadingSpinner label="Sending your task…" />}
+          <Card className="ml-0 p-4 sm:ml-11">
+            {turn.submitting && <p role="status" className="inline-flex items-center gap-2 text-sm"><Loader2 className="size-4 animate-spin" aria-hidden="true" />Sending your task…</p>}
 
             {turn.error && (
               <div role="alert" className="flex flex-wrap items-center justify-between gap-3 text-sm text-coral-ink">
                 <p>{turn.error}</p>
                 {!turn.execution && (
-                  <Button variant="secondary" size="sm" onClick={() => onRetry(turn.id)}>
+                  <Button variant="outline" size="sm" onClick={() => onRetry(turn.id)}>
                     <RotateCcw size={14} aria-hidden="true" /> Retry
                   </Button>
                 )}
@@ -45,13 +45,13 @@ export function ConversationPanel({ turns, onRetry }: { turns: TurnState[]; onRe
                 <ExecutionTimeline execution={turn.execution} />
                 <ExecutionResult execution={turn.execution} />
                 {turn.execution.status === 'failed' && (
-                  <Button variant="secondary" size="sm" onClick={() => onRetry(turn.id)}>
+                  <Button variant="outline" size="sm" onClick={() => onRetry(turn.id)}>
                     <RotateCcw size={14} aria-hidden="true" /> Retry task
                   </Button>
                 )}
               </div>
             )}
-          </div>
+          </Card>
         </section>
       ))}
     </div>

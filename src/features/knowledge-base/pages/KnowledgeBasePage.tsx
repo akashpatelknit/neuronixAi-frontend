@@ -3,7 +3,7 @@ import { FileStack } from 'lucide-react'
 import { EmptyState } from '@/components/feedback/EmptyState'
 import { ErrorState } from '@/components/feedback/ErrorState'
 import { SimulatedNotice } from '@/components/feedback/SimulatedNotice'
-import { SkeletonList } from '@/components/ui/Skeleton'
+import { ListSkeleton } from '@/components/feedback/ListSkeleton'
 import { DocumentList } from '../components/DocumentList'
 import { DocumentUpload } from '../components/DocumentUpload'
 import { KnowledgeQueryPanel } from '../components/KnowledgeQueryPanel'
@@ -21,7 +21,7 @@ export default function KnowledgeBasePage() {
       <p className="text-ink-soft">The Knowledge / RAG Agent answers from your documents. Upload files here; NeuronixAI can also draw on them when you describe a task in the Workspace.</p>
       {data?.some((d) => d.simulated) && <SimulatedNotice />}
       <DocumentUpload />
-      {isLoading && <SkeletonList rows={3} />}
+      {isLoading && <ListSkeleton rows={3} />}
       {error && <ErrorState error={error} onRetry={refetch} title="Could not load documents" />}
       {data && data.length === 0 && <EmptyState icon={FileStack} title="No documents yet" description="Upload a document to let NeuronixAI answer questions from your own knowledge." />}
       {data && data.length > 0 && <DocumentList documents={data} />}

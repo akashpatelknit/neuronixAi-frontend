@@ -1,6 +1,6 @@
+import { Button } from '@/components/ui/button'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
-import { buttonClasses } from '@/components/ui/Button'
 import { AgentOrchestrationVisual } from './AgentOrchestrationVisual'
 
 export function HeroSection() {
@@ -16,8 +16,8 @@ export function HeroSection() {
             Tell NeuronixAI what you want to accomplish. From coding and planning to writing, research, analysis, and document intelligence, it brings the right AI capabilities together around your goal.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/register" className={buttonClasses('primary', 'lg')}>Start Building <ArrowRight size={18} aria-hidden="true" /></Link>
-            <a href="#product" className={buttonClasses('secondary', 'lg')}>Explore the Platform</a>
+            <Button asChild size="lg" className="bg-brand-gradient"><Link to="/register">Start Building <ArrowRight size={18} aria-hidden="true" /></Link></Button>
+            <Button asChild variant="outline" size="lg"><a href="#product">Explore the Platform</a></Button>
           </div>
           <p className="mt-6 text-sm text-ink-soft">One workspace. Multiple specialized capabilities. A clearer path from idea to result.</p>
         </div>

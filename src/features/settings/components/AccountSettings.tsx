@@ -1,11 +1,11 @@
-import { Card, CardHeader } from '@/components/ui/Card'
+import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 import { useAuth } from '@/features/auth/hooks/useAuth'
 
 export function AccountSettings() {
   const { session } = useAuth()
   return (
     <Card>
-      <CardHeader title="Account" />
+      <CardHeader><CardTitle>Account</CardTitle></CardHeader>
       <dl className="space-y-3 p-5 text-sm">
         <div><dt className="text-ink-soft">Email</dt><dd className="font-medium">{session?.user.email}</dd></div>
         {session?.user.name && <div><dt className="text-ink-soft">Name</dt><dd className="font-medium">{session.user.name}</dd></div>}

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ListTodo } from 'lucide-react'
-import { Card, CardHeader } from '@/components/ui/Card'
-import { StatusBadge } from '@/components/ui/StatusBadge'
+import { Card, CardAction, CardHeader, CardTitle } from '@/components/ui/card'
+import { StatusBadge } from '@/components/feedback/StatusBadge'
 import { EmptyState } from '@/components/feedback/EmptyState'
 import { formatRelative } from '@/utils/dateUtils'
 import type { TaskSummary } from '@/features/tasks/types/task.types'
@@ -9,7 +9,7 @@ import type { TaskSummary } from '@/features/tasks/types/task.types'
 export function RecentTasks({ tasks }: { tasks: TaskSummary[] }) {
   return (
     <Card>
-      <CardHeader title="Recent tasks" action={<Link to="/app/tasks" className="text-sm font-medium text-violet-ink hover:underline">View all</Link>} />
+      <CardHeader><CardTitle>Recent tasks</CardTitle><CardAction><Link to="/app/tasks" className="text-sm font-medium text-violet-ink hover:underline">View all</Link></CardAction></CardHeader>
       {tasks.length === 0 ? (
         <div className="p-5"><EmptyState icon={ListTodo} title="No tasks yet" description="Give NeuronixAI something to accomplish." /></div>
       ) : (

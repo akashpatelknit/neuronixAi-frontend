@@ -1,3 +1,4 @@
+import { Card } from '@/components/ui/card'
 import type { ReactNode } from 'react'
 import { Bot, Code2, LineChart, ListChecks, PenLine, Microscope } from 'lucide-react'
 import { Logo } from '@/components/layout/Logo'
@@ -13,7 +14,7 @@ export function AuthShell({ title, subtitle, children }: { title: string; subtit
           <h1 className="mt-8 text-2xl font-semibold">{title}</h1>
           <p className="mt-1 text-ink-soft">{subtitle}</p>
           {appConfig.useMockData && <div className="mt-4"><SimulatedNotice>Demo mode: any valid credentials sign you into a simulated session.</SimulatedNotice></div>}
-          <div className="mt-6 rounded-2xl border border-line bg-surface p-6 shadow-card">{children}</div>
+          <Card className="mt-6 p-6">{children}</Card>
         </div>
       </div>
       <aside className="relative hidden overflow-hidden bg-hero-gradient lg:flex lg:items-center lg:justify-center" aria-hidden="true">

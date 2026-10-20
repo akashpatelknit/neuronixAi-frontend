@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Card, CardHeader } from '@/components/ui/Card'
+import { Card, CardAction, CardHeader, CardTitle } from '@/components/ui/card'
 import { formatRelative } from '@/utils/dateUtils'
 import type { ActivityEvent } from '@/features/activity/types/activity.types'
 import type { ConversationSummary } from '@/features/conversations/types/conversation.types'
@@ -8,7 +8,7 @@ export function RecentAgentActivity({ events, conversations }: { events: Activit
   return (
     <div className="grid gap-5 md:grid-cols-2">
       <Card>
-        <CardHeader title="Agent activity" action={<Link to="/app/activity" className="text-sm font-medium text-violet-ink hover:underline">View all</Link>} />
+        <CardHeader><CardTitle>Agent activity</CardTitle><CardAction><Link to="/app/activity" className="text-sm font-medium text-violet-ink hover:underline">View all</Link></CardAction></CardHeader>
         {events.length === 0 ? <p className="p-5 text-sm text-ink-soft">No agent activity yet.</p> : (
           <ul className="divide-y divide-line">
             {events.map((e) => (
@@ -18,7 +18,7 @@ export function RecentAgentActivity({ events, conversations }: { events: Activit
         )}
       </Card>
       <Card>
-        <CardHeader title="Recent conversations" action={<Link to="/app/conversations" className="text-sm font-medium text-violet-ink hover:underline">View all</Link>} />
+        <CardHeader><CardTitle>Recent conversations</CardTitle><CardAction><Link to="/app/conversations" className="text-sm font-medium text-violet-ink hover:underline">View all</Link></CardAction></CardHeader>
         {conversations.length === 0 ? <p className="p-5 text-sm text-ink-soft">No conversations yet. Start a task to create your first conversation.</p> : (
           <ul className="divide-y divide-line">
             {conversations.map((c) => (

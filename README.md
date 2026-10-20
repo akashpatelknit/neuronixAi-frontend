@@ -11,6 +11,9 @@ npm run dev        # also: npm run typecheck | lint | test | build
 - `VITE_API_BASE_URL` – Spring Boot base URL.
 - `VITE_USE_MOCK_DATA=true` – explicit demo mode (simulated data, labelled in the UI). When `false`, failed requests show errors and never fall back to mocks.
 
+## UI components
+All primitives are [shadcn/ui](https://ui.shadcn.com) (new-york style) in `src/components/ui`, themed through CSS variables in `src/styles/globals.css`. Domain pieces (`StatusBadge`, `AgentCard`, …) are thin compositions of those primitives. Add more with `npx shadcn@latest add <name>` (`components.json` is configured).
+
 ## Architecture
 `UI components → feature *Api.ts → services/apiClient.ts → Spring Boot`. Feature code lives in `src/features/<name>/{pages,components,services,types}`; demo data in `src/mocks`.
 

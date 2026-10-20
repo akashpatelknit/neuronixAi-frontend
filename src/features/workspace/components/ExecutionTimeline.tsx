@@ -1,6 +1,6 @@
 import { Wrench } from 'lucide-react'
 import { AgentChip } from '@/features/agents/components/AgentIcon'
-import { StatusBadge } from '@/components/ui/StatusBadge'
+import { StatusBadge } from '@/components/feedback/StatusBadge'
 import { formatDateTime, formatDuration } from '@/utils/dateUtils'
 import type { Execution } from '../types/workspace.types'
 

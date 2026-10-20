@@ -1,11 +1,12 @@
 import { useState, type FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Button } from '@/components/ui/Button'
-import { Input } from '@/components/ui/Input'
+import { Button } from '@/components/ui/button'
 import { ApiError } from '@/services/apiErrors'
 import { getErrorMessage, logDiagnostics } from '@/utils/errorUtils'
 import { useAuth } from '../hooks/useAuth'
 import { fieldErrors, registerSchema } from '../schemas/authSchemas'
+import { FormField } from './FormField'
+import { Loader2 } from 'lucide-react'
 import { PasswordField } from './PasswordField'
 
 export function RegisterForm() {
@@ -49,10 +50,10 @@ export function RegisterForm() {
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-4">
       {formError && <p role="alert" className="rounded-xl bg-coral-soft p-3 text-sm text-coral-ink">{formError}</p>}
-      <Input name="email" type="email" label="Email" autoComplete="email" error={errors.email} />
+      <FormField name="email" type="email" label="Email" autoComplete="email" error={errors.email} />
       <PasswordField name="password" label="Password" autoComplete="new-password" hint="At least 8 characters." error={errors.password} />
       <PasswordField name="confirmPassword" label="Confirm password" autoComplete="new-password" error={errors.confirmPassword} />
-      <Button type="submit" loading={loading} className="w-full">Create account</Button>
+      <Button type="submit" disabled={loading} className="h-11 w-full bg-brand-gradient">{loading && <Loader2 className="animate-spin" />}Create account</Button>
       <p className="text-center text-sm text-ink-soft">Already have an account? <Link to="/login" className="font-medium text-violet-ink hover:underline">Sign in</Link></p>
     </form>
   )

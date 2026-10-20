@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
-import clsx from 'clsx'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent } from '@/components/ui/card'
+import { cn } from '@/lib/utils'
 import { agentAccentClasses } from '../data/agentAccents'
 import type { AgentAvailability } from '@/types/common.types'
 import type { AgentDefinition } from '../types/agent.types'
@@ -18,23 +20,27 @@ export function AgentCard({ agent, to }: { agent: CardAgent; to?: string }) {
         {agent.availability && <AgentStatus availability={agent.availability} />}
       </div>
       <h3 className="mt-4 text-base font-semibold">{agent.name}</h3>
-      <p className="mt-1 text-sm text-ink-soft">{agent.description}</p>
+      <p className="mt-1 text-sm text-muted-foreground">{agent.description}</p>
       <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="Capabilities">
         {agent.capabilities.map((c) => (
-          <li key={c} className={clsx('rounded-full px-2.5 py-1 text-xs font-medium', accent.soft, accent.ink)}>
-            {c}
+          <li key={c}>
+            <Badge variant="secondary" className={cn('rounded-full px-2.5 py-1 font-medium', accent.soft, accent.ink)}>{c}</Badge>
           </li>
         ))}
       </ul>
-      {agent.notReportedByBackend && <p className="mt-3 text-xs text-ink-soft">The backend did not report this agent.</p>}
+      {agent.notReportedByBackend && <p className="mt-3 text-xs text-muted-foreground">The backend did not report this agent.</p>}
     </>
   )
-  const classes = 'block h-full rounded-2xl border border-line bg-surface p-5 shadow-card transition-ui hover:-translate-y-1 hover:shadow-lift'
+  const card = (
+    <Card className="h-full transition-ui hover:-translate-y-1 hover:shadow-lift">
+      <CardContent className="p-5">{body}</CardContent>
+    </Card>
+  )
   return to ? (
-    <Link to={to} className={classes}>
-      {body}
+    <Link to={to} className="block h-full rounded-2xl">
+      {card}
     </Link>
   ) : (
-    <div className={classes}>{body}</div>
+    card
   )
 }

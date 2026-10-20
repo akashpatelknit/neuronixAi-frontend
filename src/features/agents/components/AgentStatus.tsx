@@ -1,5 +1,6 @@
 import { CircleCheck, CircleSlash, Clock } from 'lucide-react'
-import clsx from 'clsx'
+import { Badge } from '@/components/ui/badge'
+import { cn } from '@/lib/utils'
 import type { AgentAvailability } from '@/types/common.types'
 
 const config = {
@@ -11,9 +12,9 @@ const config = {
 export function AgentStatus({ availability }: { availability: AgentAvailability }) {
   const { label, Icon, classes } = config[availability]
   return (
-    <span className={clsx('inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold', classes)}>
-      <Icon size={13} aria-hidden="true" />
+    <Badge variant="secondary" className={cn('rounded-full px-2.5 py-1 font-semibold', classes)}>
+      <Icon aria-hidden="true" />
       {label}
-    </span>
+    </Badge>
   )
 }

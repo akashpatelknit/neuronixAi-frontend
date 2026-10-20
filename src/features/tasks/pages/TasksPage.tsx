@@ -4,8 +4,8 @@ import { ListTodo } from 'lucide-react'
 import { EmptyState } from '@/components/feedback/EmptyState'
 import { ErrorState } from '@/components/feedback/ErrorState'
 import { SimulatedNotice } from '@/components/feedback/SimulatedNotice'
-import { SkeletonList } from '@/components/ui/Skeleton'
-import { Button } from '@/components/ui/Button'
+import { ListSkeleton } from '@/components/feedback/ListSkeleton'
+import { Button } from '@/components/ui/button'
 import { useDebounce } from '@/hooks/useDebounce'
 import { appConfig } from '@/config/appConfig'
 import { TaskCard } from '../components/TaskCard'
@@ -28,7 +28,7 @@ export default function TasksPage() {
     <div className="space-y-5">
       {appConfig.useMockData && <SimulatedNotice />}
       <TaskFilters query={query} onChange={(change) => setQuery((q) => ({ ...q, ...change }))} />
-      {isLoading && <SkeletonList />}
+      {isLoading && <ListSkeleton />}
       {error && <ErrorState error={error} onRetry={refetch} title="Could not load tasks" />}
       {data && data.items.length === 0 && (
         <EmptyState
@@ -46,8 +46,8 @@ export default function TasksPage() {
           <nav aria-label="Pagination" className="flex items-center justify-between">
             <p className="text-sm text-ink-soft">Page {query.page} of {pages} · {data.total} tasks</p>
             <div className="flex gap-2">
-              <Button variant="secondary" size="sm" disabled={query.page <= 1} onClick={() => setQuery((q) => ({ ...q, page: q.page - 1 }))}>Previous</Button>
-              <Button variant="secondary" size="sm" disabled={query.page >= pages} onClick={() => setQuery((q) => ({ ...q, page: q.page + 1 }))}>Next</Button>
+              <Button variant="outline" size="sm" disabled={query.page <= 1} onClick={() => setQuery((q) => ({ ...q, page: q.page - 1 }))}>Previous</Button>
+              <Button variant="outline" size="sm" disabled={query.page >= pages} onClick={() => setQuery((q) => ({ ...q, page: q.page + 1 }))}>Next</Button>
             </div>
           </nav>
         </>

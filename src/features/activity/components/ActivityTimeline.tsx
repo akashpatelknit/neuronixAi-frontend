@@ -1,3 +1,4 @@
+import { Card } from '@/components/ui/card'
 import { CheckCircle2, Cpu, FilePlus2, PlayCircle, Wrench, XCircle, type LucideIcon } from 'lucide-react'
 import clsx from 'clsx'
 import { formatDateTime } from '@/utils/dateUtils'
@@ -27,13 +28,13 @@ export function ActivityTimeline({ events }: { events: ActivityEvent[] }) {
       {events.map((e) => {
         const { Icon, classes } = icons[e.type]
         return (
-          <li key={e.id} className="flex items-start gap-3 rounded-2xl border border-line bg-surface p-4 shadow-card">
+          <li key={e.id}><Card className="flex-row items-start gap-3 p-4">
             <span className={clsx('flex size-9 shrink-0 items-center justify-center rounded-xl', classes)}><Icon size={17} aria-hidden="true" /></span>
             <div className="min-w-0 flex-1">
               <p className="text-sm font-medium">{e.summary}</p>
               <p className="text-xs text-ink-soft">{activityTypeLabels[e.type]} · {formatDateTime(e.at)}</p>
             </div>
-          </li>
+          </Card></li>
         )
       })}
     </ol>

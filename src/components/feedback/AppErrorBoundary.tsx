@@ -1,4 +1,5 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react'
+import { Button } from '@/components/ui/button'
 import { logDiagnostics } from '@/utils/errorUtils'
 
 export class AppErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
@@ -16,9 +17,9 @@ export class AppErrorBoundary extends Component<{ children: ReactNode }, { faile
         <div>
           <h1 className="text-xl font-semibold">Something went wrong</h1>
           <p className="mt-2 text-ink-soft">An unexpected error occurred. Please reload the page.</p>
-          <button className="mt-4 rounded-xl bg-violet px-4 py-2 font-semibold text-white" onClick={() => location.reload()}>
+          <Button className="mt-4" onClick={() => location.reload()}>
             Reload
-          </button>
+          </Button>
         </div>
       </div>
     )

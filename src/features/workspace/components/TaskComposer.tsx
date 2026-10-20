@@ -1,6 +1,9 @@
 import { useRef, useState, type FormEvent, type KeyboardEvent } from 'react'
 import { SendHorizonal } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
 
 const MAX_LENGTH = 4000
 
@@ -32,11 +35,11 @@ export function TaskComposer({ onSubmit, disabled, placeholder = 'Describe your 
   }
 
   return (
-    <form onSubmit={submit} className="rounded-2xl border border-line bg-surface p-3 shadow-card focus-within:border-violet focus-within:ring-2 focus-within:ring-violet/15">
-      <label htmlFor="task-input" className="px-1 text-sm font-semibold">
+    <form onSubmit={submit}><Card className="p-3 focus-within:border-violet focus-within:ring-2 focus-within:ring-violet/15">
+      <Label htmlFor="task-input" className="px-1 text-sm font-semibold">
         What would you like NeuronixAI to accomplish?
-      </label>
-      <textarea
+      </Label>
+      <Textarea
         id="task-input"
         ref={ref}
         value={value}
@@ -47,7 +50,7 @@ export function TaskComposer({ onSubmit, disabled, placeholder = 'Describe your 
         placeholder={placeholder}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? 'task-input-error' : 'task-input-hint'}
-        className="mt-2 w-full resize-none rounded-xl bg-transparent px-1 text-sm placeholder:text-ink-soft/70 focus:outline-none disabled:opacity-60"
+        className="mt-2 resize-none border-0 bg-transparent px-1 shadow-none focus-visible:ring-0 dark:bg-transparent"
       />
       <div className="flex items-center justify-between gap-3">
         {error ? (
@@ -59,10 +62,10 @@ export function TaskComposer({ onSubmit, disabled, placeholder = 'Describe your 
             <kbd className="rounded bg-neutral-soft px-1">Ctrl</kbd>/<kbd className="rounded bg-neutral-soft px-1">⌘</kbd> + <kbd className="rounded bg-neutral-soft px-1">Enter</kbd> to send
           </p>
         )}
-        <Button type="submit" disabled={disabled || !value.trim()} className="shrink-0">
+        <Button type="submit" disabled={disabled || !value.trim()} className="shrink-0 bg-brand-gradient">
           Send <SendHorizonal size={16} aria-hidden="true" />
         </Button>
       </div>
-    </form>
+    </Card></form>
   )
 }

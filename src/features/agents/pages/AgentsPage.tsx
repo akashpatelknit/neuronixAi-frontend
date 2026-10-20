@@ -2,7 +2,7 @@ import { Bot } from 'lucide-react'
 import { EmptyState } from '@/components/feedback/EmptyState'
 import { ErrorState } from '@/components/feedback/ErrorState'
 import { SimulatedNotice } from '@/components/feedback/SimulatedNotice'
-import { Skeleton } from '@/components/ui/Skeleton'
+import { Skeleton } from '@/components/ui/skeleton'
 import { AgentGrid } from '../components/AgentGrid'
 import { useAgents } from '../hooks/useAgents'
 

@@ -1,5 +1,5 @@
-import { StatusBadge } from '@/components/ui/StatusBadge'
-import { Card, CardHeader } from '@/components/ui/Card'
+import { StatusBadge } from '@/components/feedback/StatusBadge'
+import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 import type { ExecutionStatus } from '@/types/common.types'
 
 const ORDER: ExecutionStatus[] = ['running', 'pending', 'completed', 'failed']
@@ -7,7 +7,7 @@ const ORDER: ExecutionStatus[] = ['running', 'pending', 'completed', 'failed']
 export function DashboardMetrics({ counts }: { counts: Record<ExecutionStatus, number> }) {
   return (
     <Card>
-      <CardHeader title="Task status" />
+      <CardHeader><CardTitle>Task status</CardTitle></CardHeader>
       <ul className="grid grid-cols-2 gap-3 p-5">
         {ORDER.map((s) => (
           <li key={s} className="rounded-xl bg-canvas p-3">

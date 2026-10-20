@@ -1,5 +1,6 @@
 import { CheckCircle2, CircleDashed, Loader2, XCircle } from 'lucide-react'
-import clsx from 'clsx'
+import { Badge } from '@/components/ui/badge'
+import { cn } from '@/lib/utils'
 import type { DocumentStatus as Status } from '../types/knowledgeBase.types'
 
 const config = {
@@ -12,9 +13,9 @@ const config = {
 export function DocumentStatus({ status }: { status: Status }) {
   const { label, Icon, classes } = config[status]
   return (
-    <span className={clsx('inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold', classes)}>
-      <Icon size={13} aria-hidden="true" className={status === 'processing' ? 'animate-spin motion-reduce:animate-none' : undefined} />
+    <Badge variant="secondary" className={cn('rounded-full px-2.5 py-1 font-semibold', classes)}>
+      <Icon aria-hidden="true" className={status === 'processing' ? 'animate-spin motion-reduce:animate-none' : undefined} />
       {label}
-    </span>
+    </Badge>
   )
 }

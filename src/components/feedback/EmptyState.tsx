@@ -1,6 +1,7 @@
 import type { LucideIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { buttonClasses } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
 
 interface EmptyStateProps {
   icon: LucideIcon
@@ -12,17 +13,19 @@ interface EmptyStateProps {
 
 export function EmptyState({ icon: Icon, title, description, actionLabel, actionTo }: EmptyStateProps) {
   return (
-    <div className="rounded-2xl border border-dashed border-line bg-surface/60 p-8 text-center">
-      <div className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-violet-soft text-violet">
-        <Icon size={24} aria-hidden="true" />
-      </div>
-      <h3 className="mt-4 font-semibold">{title}</h3>
-      <p className="mx-auto mt-1 max-w-sm text-sm text-ink-soft">{description}</p>
-      {actionLabel && actionTo && (
-        <Link to={actionTo} className={buttonClasses('primary', 'md', 'mt-5')}>
-          {actionLabel}
-        </Link>
-      )}
-    </div>
+    <Card className="border-dashed bg-card/60 shadow-none">
+      <CardContent className="p-8 text-center">
+        <div className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-violet-soft text-violet">
+          <Icon size={24} aria-hidden="true" />
+        </div>
+        <h3 className="mt-4 font-semibold">{title}</h3>
+        <p className="mx-auto mt-1 max-w-sm text-sm text-muted-foreground">{description}</p>
+        {actionLabel && actionTo && (
+          <Button asChild className="mt-5">
+            <Link to={actionTo}>{actionLabel}</Link>
+          </Button>
+        )}
+      </CardContent>
+    </Card>
   )
 }

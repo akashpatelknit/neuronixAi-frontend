@@ -1,3 +1,4 @@
+import { Card } from '@/components/ui/card'
 import { FileText } from 'lucide-react'
 import { formatDateTime } from '@/utils/dateUtils'
 import type { KnowledgeDocument } from '../types/knowledgeBase.types'
@@ -7,7 +8,7 @@ const formatSize = (bytes?: number) => (bytes === undefined ? '—' : bytes < 1_
 
 export function DocumentList({ documents }: { documents: KnowledgeDocument[] }) {
   return (
-    <ul className="divide-y divide-line rounded-2xl border border-line bg-surface shadow-card">
+    <Card><ul className="divide-y" >
       {documents.map((d) => (
         <li key={d.id} className="flex flex-wrap items-center gap-3 p-4">
           <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-mint-soft text-mint-ink"><FileText size={18} aria-hidden="true" /></span>
@@ -22,6 +23,6 @@ export function DocumentList({ documents }: { documents: KnowledgeDocument[] }) 
           <DocumentStatus status={d.status} />
         </li>
       ))}
-    </ul>
+    </ul></Card>
   )
 }
